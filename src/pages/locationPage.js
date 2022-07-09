@@ -7,13 +7,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { FilterIcon } from "@heroicons/react/outline";
 import ListModal from "../components/listModal";
-import Downloader from "../components/downloader";
 
 function LocationPage() {
   const {
     state: {
       loading,
-      count,
       locations,
       phone,
       start_time,

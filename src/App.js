@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/loginPage";
 import NotFound from "./pages/NotFound";
 import Index from "./pages/Index";
 import SkillPage from "./pages/SkillPage";
