@@ -65,6 +65,7 @@ function reducer(state, action) {
       return {
         ...state,
         listPhone: action.payload,
+        loading: false,
       };
     case "RESET_SINGLE_FILTER":
       return {

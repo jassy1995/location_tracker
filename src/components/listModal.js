@@ -69,8 +69,8 @@ export default function ListModal({ open, setOpen, setClose }) {
                                   <div className="flex flex-col space-y-1">
                                     {loading ? (
                                       <DisplayInfo children="Loading..." />
-                                    ) : !listPhone.length && !loading ? (
-                                      <DisplayInfo children="Loading..." />
+                                    ) : listPhone?.length === 0 && !loading ? (
+                                      <DisplayInfo children="Empty." />
                                     ) : (
                                       <div className="overflow-auto">
                                         <table className="min-w-full table-fixed">

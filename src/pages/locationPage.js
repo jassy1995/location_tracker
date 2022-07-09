@@ -42,7 +42,6 @@ function LocationPage() {
             }
           );
           dispatch({ type: "UPDATE_LOCATION", payload: data });
-          // dispatch({ type: "SET_COUNT", payload: data.count });
           dispatch({ type: "END_FETCHING", payload: false });
         } catch (error) {
           dispatch({ type: "END_FETCHING", payload: false });
@@ -79,7 +78,7 @@ function LocationPage() {
 
   useEffect(() => {
     async function getPhones() {
-      dispatch({ type: "START_FETCHING", payload: true });
+      dispatch({ type: "START_FETCHING" });
       try {
         const { data } = await axios.get(
           "https://ccendpoints.herokuapp.com/api/v2/last-visited"

@@ -23,7 +23,7 @@ function LocationTable() {
     <>
       {loading ? (
         <DisplayInfo children="Loading..." />
-      ) : locations.length === 0 && !loading ? (
+      ) : locations?.length === 0 && !loading ? (
         <DisplayInfo children="No Data found" />
       ) : (
         <div className="flex flex-col">
@@ -78,7 +78,7 @@ function LocationTable() {
                     </tr>
                   </thead>
                   <tbody>
-                    {locations.map((request, index) => (
+                    {locations?.map((request, index) => (
                       <tr key={index} className="border-b">
                         <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300 text-center">
                           {index + 1}
