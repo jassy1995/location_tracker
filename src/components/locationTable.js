@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Store } from "../store";
+import { timeFormatter } from "../util/timeFormatter";
 
 import DisplayInfo from "./empty";
 
@@ -50,18 +51,6 @@ function LocationTable({ isLoading }) {
                         scope="col"
                         className="text-sm font-medium text-blue-500 px-2 py-2 text-center border  border-slate-300"
                       >
-                        longitude
-                      </th>
-                      <th
-                        scope="col"
-                        className="text-sm font-medium text-blue-500 px-2 py-2 text-center border  border-slate-300"
-                      >
-                        latitude
-                      </th>
-                      <th
-                        scope="col"
-                        className="text-sm font-medium text-blue-500 px-2 py-2 text-center border  border-slate-300"
-                      >
                         show on map
                       </th>
                       <th
@@ -82,16 +71,7 @@ function LocationTable({ isLoading }) {
                         <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-nowrap border border-slate-300 text-center">
                           {request?.phone ? request.phone : "-"}
                         </td>
-                        <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-nowrap border border-slate-300 text-center">
-                          {request?.latlng
-                            ? request.latlng?.split(",")[1]
-                            : "-"}
-                        </td>
-                        <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-normal border border-slate-300 text-center">
-                          {request?.latlng
-                            ? request.latlng?.split(",")[0]
-                            : "-"}
-                        </td>
+
                         <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-normal border border-slate-300 text-center">
                           {request?.latlng ? (
                             <button
@@ -105,7 +85,13 @@ function LocationTable({ isLoading }) {
                           )}
                         </td>
                         <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-nowrap border border-slate-300 text-center">
-                          {request?.time_created}
+                          <span className="border-r- border-slate-600 pr-1">
+                            {request?.time_created?.split(" ")[0]}
+                          </span>{" "}
+                          <span className="pl-1 font-mono font-bold">
+                            {request?.time_created &&
+                              timeFormatter(new Date(request.time_created))}
+                          </span>
                         </td>
                       </tr>
                     ))}

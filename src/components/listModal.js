@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { Store } from "../store";
 import DisplayInfo from "./empty";
+import { timeFormatter } from "../util/timeFormatter";
 
 export default function ListModal({ open, setOpen, setClose }) {
   const { state } = useContext(Store);
@@ -102,14 +103,28 @@ export default function ListModal({ open, setOpen, setClose }) {
                                                 key={index}
                                                 className="border-b"
                                               >
-                                                <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300 text-center">
+                                                <td className="px-3 py-2 whitespace-nowrap text-sm  text-gray-900 border border-slate-300 text-center">
                                                   {index + 1}
                                                 </td>
                                                 <td className="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap border border-slate-300 text-center">
                                                   {request?.phone}
                                                 </td>
                                                 <td className="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap border border-slate-300 text-center">
-                                                  {request?.createdAt}
+                                                  <span className="border-r- border-slate-600 pr-1">
+                                                    {
+                                                      request?.time_created?.split(
+                                                        " "
+                                                      )[0]
+                                                    }
+                                                  </span>{" "}
+                                                  <span className="pl-1 font-mono font-bold">
+                                                    {request?.time_created &&
+                                                      timeFormatter(
+                                                        new Date(
+                                                          request.time_created
+                                                        )
+                                                      )}
+                                                  </span>
                                                 </td>
                                               </tr>
                                             ))}

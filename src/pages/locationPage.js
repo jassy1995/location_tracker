@@ -42,7 +42,7 @@ function LocationPage() {
               end_time: null,
             }
           );
-          dispatch({ type: "UPDATE_LOCATION", payload: data });
+          dispatch({ type: "UPDATE_LOCATION", payload: data.result });
           dispatch({ type: "END_FETCHING", payload: false });
           setIsLoading(false);
         } catch (error) {
@@ -115,7 +115,7 @@ function LocationPage() {
               end_time,
             }
           );
-          dispatch({ type: "UPDATE_LOCATION", payload: data });
+          dispatch({ type: "UPDATE_LOCATION", payload: data.result });
           dispatch({ type: "END_FETCHING", payload: false });
           setIsLoading(false);
         } catch (error) {
