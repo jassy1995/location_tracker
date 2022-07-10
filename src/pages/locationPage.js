@@ -183,7 +183,7 @@ function LocationPage() {
               <div className="flex items-center space-x-6">
                 {/* <Downloader /> */}
                 <button
-                  className="hover:border-b-4 hover:border-blue-500"
+                  className="hover:border-b-4 hover:border-blue-500 font-mono font-bold cursor:pointer"
                   onClick={() => setOpen1(true)}
                 >
                   Check List
