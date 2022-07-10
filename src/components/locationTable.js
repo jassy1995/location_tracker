@@ -3,9 +3,9 @@ import { Store } from "../store";
 
 import DisplayInfo from "./empty";
 
-function LocationTable() {
+function LocationTable({ isLoading }) {
   const {
-    state: { locations, loading },
+    state: { locations },
   } = useContext(Store);
   console.log(locations);
 
@@ -18,14 +18,13 @@ function LocationTable() {
     link.target = "blank";
     link.click();
   };
-  console.log(loading);
 
   return (
     <>
-      {loading && !locations.length ? (
+      {isLoading ? (
         <DisplayInfo children="Loading..." />
-      ) : locations?.length === 0 && !loading ? (
-        <DisplayInfo children="No Data found" />
+      ) : locations.length === 0 && !isLoading ? (
+        <DisplayInfo children="No Data found " />
       ) : (
         <div className="flex flex-col">
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -74,43 +73,42 @@ function LocationTable() {
                     </tr>
                   </thead>
                   <tbody>
-                    {locations.length &&
-                      locations?.map((request, index) => (
-                        <tr key={index} className="border-b">
-                          <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300 text-center">
-                            {index + 1}
-                          </td>
+                    {locations.map((request, index) => (
+                      <tr key={index} className="border-b">
+                        <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300 text-center">
+                          {index + 1}
+                        </td>
 
-                          <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-nowrap border border-slate-300 text-center">
-                            {request?.phone ? request.phone : "-"}
-                          </td>
-                          <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-nowrap border border-slate-300 text-center">
-                            {request?.latlng
-                              ? request.latlng?.split(",")[1]
-                              : "-"}
-                          </td>
-                          <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-normal border border-slate-300 text-center">
-                            {request?.latlng
-                              ? request.latlng?.split(",")[0]
-                              : "-"}
-                          </td>
-                          <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-normal border border-slate-300 text-center">
-                            {request?.latlng ? (
-                              <button
-                                className="bg-green-100 px-2 py-1 text-green-700 text-sm font-medium rounded-full"
-                                onClick={() => showOnMap(request.latlng)}
-                              >
-                                show on map
-                              </button>
-                            ) : (
-                              "-"
-                            )}
-                          </td>
-                          <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-nowrap border border-slate-300 text-center">
-                            {request?.time_created}
-                          </td>
-                        </tr>
-                      ))}
+                        <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-nowrap border border-slate-300 text-center">
+                          {request?.phone ? request.phone : "-"}
+                        </td>
+                        <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-nowrap border border-slate-300 text-center">
+                          {request?.latlng
+                            ? request.latlng?.split(",")[1]
+                            : "-"}
+                        </td>
+                        <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-normal border border-slate-300 text-center">
+                          {request?.latlng
+                            ? request.latlng?.split(",")[0]
+                            : "-"}
+                        </td>
+                        <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-normal border border-slate-300 text-center">
+                          {request?.latlng ? (
+                            <button
+                              className="bg-green-100 px-2 py-1 text-green-700 text-sm font-medium rounded-full"
+                              onClick={() => showOnMap(request.latlng)}
+                            >
+                              show on map
+                            </button>
+                          ) : (
+                            "-"
+                          )}
+                        </td>
+                        <td className="text-sm text-gray-900 font-light px-3 py-3 whitespace-nowrap border border-slate-300 text-center">
+                          {request?.time_created}
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

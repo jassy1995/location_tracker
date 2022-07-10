@@ -9,6 +9,7 @@ import { FilterIcon } from "@heroicons/react/outline";
 import ListModal from "../components/listModal";
 
 function LocationPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const {
     state: {
       loading,
@@ -41,8 +42,9 @@ function LocationPage() {
               end_time: null,
             }
           );
-          dispatch({ type: "END_FETCHING", payload: false });
           dispatch({ type: "UPDATE_LOCATION", payload: data });
+          dispatch({ type: "END_FETCHING", payload: false });
+          setIsLoading(false);
         } catch (error) {
           dispatch({ type: "END_FETCHING", payload: false });
           let msg = error?.message
@@ -78,12 +80,13 @@ function LocationPage() {
 
   useEffect(() => {
     async function getPhones() {
-      dispatch({ type: "START_FETCHING" });
+      dispatch({ type: "START_FETCHING", payload: true });
       try {
         const { data } = await axios.get(
           "https://ccendpoints.herokuapp.com/api/v2/last-visited"
         );
         dispatch({ type: "PHONE_LIST", payload: data });
+        dispatch({ type: "END_FETCHING", payload: false });
       } catch (error) {
         dispatch({ type: "END_FETCHING", payload: false });
         let msg = error?.message
@@ -112,8 +115,9 @@ function LocationPage() {
               end_time,
             }
           );
-          dispatch({ type: "END_FETCHING", payload: false });
           dispatch({ type: "UPDATE_LOCATION", payload: data });
+          dispatch({ type: "END_FETCHING", payload: false });
+          setIsLoading(false);
         } catch (error) {
           dispatch({ type: "END_FETCHING", payload: false });
           let msg = error?.message
@@ -203,7 +207,7 @@ function LocationPage() {
               </div>
             </div>
 
-            <LocationTable />
+            <LocationTable isLoading={isLoading} />
             {!loading && locations.length > 0 && (
               <div className="flex justify-end  mb-2 pr-5 ">
                 <button
