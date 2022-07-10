@@ -28,7 +28,7 @@ const initialState = {
   filterStartDate: null,
   filterEndDate: null,
   fetchHistory: false,
-  loading: false,
+  loading: true,
   downloads: [],
   listPhone: [],
   wesabiUser: localStorage.getItem("wesabiUser")
@@ -60,6 +60,7 @@ function reducer(state, action) {
       return {
         ...state,
         phones: action.payload,
+        loading: false,
       };
     case "PHONE_LIST":
       return {
@@ -129,6 +130,7 @@ function reducer(state, action) {
       return {
         ...state,
         locations: action.payload,
+        loading: false,
       };
     case "UPDATE_MY_HISTORY":
       return {

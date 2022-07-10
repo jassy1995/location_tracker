@@ -78,15 +78,21 @@ export default function ListModal({ open, setOpen, setClose }) {
                                             <tr>
                                               <th
                                                 scope="col"
-                                                className="text-sm font-medium text-blue-500 px-6 py-4 text-center border  border-slate-300"
+                                                className="text-sm font-bold text-blue-500 px-6 py-4 text-center border  border-slate-300"
                                               >
                                                 s/n
                                               </th>
                                               <th
                                                 scope="col"
-                                                className="text-sm font-medium text-blue-500 px-6 py-4 text-center border  border-slate-300"
+                                                className="text-sm font-bold text-blue-500 px-6 py-4 text-center border  border-slate-300"
                                               >
-                                                phone number
+                                                Phone
+                                              </th>
+                                              <th
+                                                scope="col"
+                                                className="text-sm font-bold text-blue-500 px-6 py-4 text-center border  border-slate-300"
+                                              >
+                                                Date
                                               </th>
                                             </tr>
                                           </thead>
@@ -96,11 +102,14 @@ export default function ListModal({ open, setOpen, setClose }) {
                                                 key={index}
                                                 className="border-b"
                                               >
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300 text-center">
+                                                <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300 text-center">
                                                   {index + 1}
                                                 </td>
-                                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border border-slate-300 text-center">
+                                                <td className="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap border border-slate-300 text-center">
                                                   {request?.phone}
+                                                </td>
+                                                <td className="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap border border-slate-300 text-center">
+                                                  {request?.createdAt}
                                                 </td>
                                               </tr>
                                             ))}

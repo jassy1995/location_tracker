@@ -41,8 +41,8 @@ function LocationPage() {
               end_time: null,
             }
           );
-          dispatch({ type: "UPDATE_LOCATION", payload: data });
           dispatch({ type: "END_FETCHING", payload: false });
+          dispatch({ type: "UPDATE_LOCATION", payload: data });
         } catch (error) {
           dispatch({ type: "END_FETCHING", payload: false });
           let msg = error?.message
@@ -112,9 +112,8 @@ function LocationPage() {
               end_time,
             }
           );
-          dispatch({ type: "UPDATE_LOCATION", payload: data });
-          // dispatch({ type: "SET_COUNT", payload: data.count });
           dispatch({ type: "END_FETCHING", payload: false });
+          dispatch({ type: "UPDATE_LOCATION", payload: data });
         } catch (error) {
           dispatch({ type: "END_FETCHING", payload: false });
           let msg = error?.message
